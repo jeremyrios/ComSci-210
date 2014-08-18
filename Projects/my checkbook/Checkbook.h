@@ -1,0 +1,31 @@
+#ifndef Checkbook_h
+#define Checkbook_h
+
+
+
+template <class DataType>
+class DynamicCheckbook
+{
+  public:
+	DynamicCheckbook();
+    DynamicCheckbook(float initBalance);
+    void setBalance(float amt){balance = amt;}
+	bool writeCheck(float amt); //returns false if amount is greater than balence 
+	bool deposit(float amt);
+	float getBalance() const {return balance;}
+    float getLastDeposit()const {return lastDeposit;}
+	int getNumChecksWritten() const {return numChecksWritten;}
+    DataType* getChecks() const;
+
+  private:
+    DataType* checks;
+    float balance;
+    int numChecks; // the number of checks (allocated memory) in the array
+    int numChecksWritten; // the number of checks actually written in the array
+    float lastDeposit;
+    void doubleArray();
+};
+
+#include "Checkbook.cpp"
+
+#endif
